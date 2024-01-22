@@ -116,8 +116,14 @@ CREATE TABLE movies (
     title TEXT,
     year_released INTEGER,
     mpaa_rating TEXT,
-    studios_name TEXT,
+    studios_id INTEGER,
 );
+
+CREATE TABLE studios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+);
+
 
 CREATE TABLE actors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -144,22 +150,29 @@ CREATE TABLE casting (
 -- TODO!
 
 INSERT INTO movies (
-    id, title, year_released, mpaa_rating, studios_name
+    id, title, year_released, mpaa_rating, studios_id
 ) VALUE (
-    1, 'Batman Begins', 2005, 'PG-13', 'Warner Bros.'
+    1, 'Batman Begins', 2005, 'PG-13', 1
 );
 
 INSERT INTO movies (
-    id, title, year_released, mpaa_rating, studios_name
+    id, title, year_released, mpaa_rating, studios_id
 ) VALUE (
-    2, 'The Dark Knight', 2008, 'PG-13', 'Warner Bros.'
+    2, 'The Dark Knight', 2008, 'PG-13', 1
 );
 
 INSERT INTO movies (
-    id, title, year_released, mpaa_rating, studios_name
+    id, title, year_released, mpaa_rating, studios_id
 ) VALUE (
-    3, 'The Dark Knight Rises', 2012, 'PG-13', 'Warner Bros.'
+    3, 'The Dark Knight Rises', 2012, 'PG-13', 1
 );
+
+INSERT INTO studios (
+    id, name
+) VALUE (
+    1, 'Warner Bros.'
+);
+
 
 
 -- Prints a header for the cast output
@@ -168,9 +181,6 @@ INSERT INTO movies (
 .print "========"
 .print ""
 
-
--- The SQL statement for the cast output
--- TODO!
 
 INSERT INTO actors (
     id, name
@@ -238,8 +248,96 @@ INSERT INTO actors (
     11, 'Anne Hathaway'
 );
 
+-- The SQL statement for the cast output
+-- TODO!
+
+
 INSERT INTO casting (
     id, movies_id, actors_id, character
 ) VALUE (
     1,1,1,'Bruce Wayne'
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    2,1,2,'Alfred'
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    3,1,3,"'Ra's Al Ghul"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    4,1,4,"Rachel Dawes"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    5,1,5,"Commissioner Gordon"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    6,2,1,"Bruce Wayne"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    7,2,6,"Joker"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    8,2,7,"Harvey Dent"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    9,2,2,"Alfred"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    10,2,8,"Rachel Dawes"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    11,3,1,"Bruce Wayne"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    12,3,5,"Commissioner Gordon"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    13,3,9,"Bane"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    14,3,10,"John Blake"
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    15,3,11,"Selina Kyle"
 );
