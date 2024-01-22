@@ -105,9 +105,31 @@
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS casting;
 
 -- Create new tables, according to your domain model
 -- TODO!
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    year_released INTEGER,
+    mpaa_rating TEXT,
+    studios_name TEXT,
+);
+
+CREATE TABLE actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+);
+
+CREATE TABLE casting (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movies_id INTEGER,
+    actors_id INTEGER,
+    character TEXT
+);
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
@@ -121,12 +143,103 @@
 -- The SQL statement for the movies output
 -- TODO!
 
+INSERT INTO movies (
+    id, title, year_released, mpaa_rating, studios_name
+) VALUE (
+    1, 'Batman Begins', 2005, 'PG-13', 'Warner Bros.'
+);
+
+INSERT INTO movies (
+    id, title, year_released, mpaa_rating, studios_name
+) VALUE (
+    2, 'The Dark Knight', 2008, 'PG-13', 'Warner Bros.'
+);
+
+INSERT INTO movies (
+    id, title, year_released, mpaa_rating, studios_name
+) VALUE (
+    3, 'The Dark Knight Rises', 2012, 'PG-13', 'Warner Bros.'
+);
+
+
 -- Prints a header for the cast output
 .print ""
-.print "Top Cast"
+.print "Top cast"
 .print "========"
 .print ""
 
 
 -- The SQL statement for the cast output
 -- TODO!
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    1, 'Christian Bale'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    2, 'Michael Caine'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    3, 'Liam Neeson'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    4, 'Katie Holmes'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    5, 'Gary Oldman'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    6, 'Heath Ledger'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    7, 'Aaron Eckhart'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    8, 'Maggie Gyllenhaal'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    9, 'Tom Hardy'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    10, 'Joseph Gordon-Levitt'
+);
+
+INSERT INTO actors (
+    id, name
+) VALUE (
+    11, 'Anne Hathaway'
+);
+
+INSERT INTO casting (
+    id, movies_id, actors_id, character
+) VALUE (
+    1,1,1,'Bruce Wayne'
+);
