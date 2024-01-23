@@ -122,20 +122,20 @@ CREATE TABLE movies (
 
 CREATE TABLE studios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT
+    studios_name TEXT
 );
 
 
 CREATE TABLE actors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT
+    actors_name TEXT
 );
 
 CREATE TABLE casting (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movies_id INTEGER,
     actors_id INTEGER,
-    character TEXT
+    character_name TEXT
 );
 
 -- Insert data into your database that reflects the sample data shown above
@@ -169,7 +169,7 @@ INSERT INTO movies (
 );
 
 INSERT INTO studios (
-    id, name
+    id, studios_name
 ) VALUES (
     1, 'Warner Bros.'
 );
@@ -184,67 +184,67 @@ SELECT title, year_released, mpaa_rating, studios_id FROM movies;
 
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     1, 'Christian Bale'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     2, 'Michael Caine'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     3, 'Liam Neeson'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     4, 'Katie Holmes'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     5, 'Gary Oldman'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     6, 'Heath Ledger'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     7, 'Aaron Eckhart'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     8, 'Maggie Gyllenhaal'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     9, 'Tom Hardy'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     10, 'Joseph Gordon-Levitt'
 );
 
 INSERT INTO actors (
-    id, name
+    id, actors_name
 ) VALUES (
     11, 'Anne Hathaway'
 );
@@ -254,93 +254,103 @@ INSERT INTO actors (
 
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     1,1,1,'Bruce Wayne'
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     2,1,2,'Alfred'
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     3,1,3,"'Ra's Al Ghul"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     4,1,4,"Rachel Dawes"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     5,1,5,"Commissioner Gordon"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     6,2,1,"Bruce Wayne"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     7,2,6,"Joker"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     8,2,7,"Harvey Dent"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     9,2,2,"Alfred"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     10,2,8,"Rachel Dawes"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     11,3,1,"Bruce Wayne"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     12,3,5,"Commissioner Gordon"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     13,3,9,"Bane"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     14,3,10,"John Blake"
 );
 
 INSERT INTO casting (
-    id, movies_id, actors_id, character
+    id, movies_id, actors_id, character_name
 ) VALUES (
     15,3,11,"Selina Kyle"
 );
 
-SELECT movies_id, actors_id, character FROM casting;
+
+select a.title as title,b.actors_name as actors_name, b.character_name as character_name
+from movies a
+left join (
+    SELECT a.movies_id as movies_id, b.actors_name as actors_name, a.character_name as character_name
+    FROM casting a
+    left join actors b
+    on a.actors_id = b.id
+            )b
+on a.id = b.movies_id
+
