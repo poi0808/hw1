@@ -174,7 +174,10 @@ INSERT INTO studios (
     1, 'Warner Bros.'
 );
 
-SELECT title, year_released, mpaa_rating, studios_id FROM movies;
+SELECT a.title, a.year_released, a.mpaa_rating, b.studios_name 
+FROM movies a
+INNER JOIN studios b 
+ON a.studios_id = b.id;
 
 -- Prints a header for the cast output
 .print ""
@@ -344,13 +347,13 @@ INSERT INTO casting (
 );
 
 
-select a.title as title,b.actors_name as actors_name, b.character_name as character_name
-from movies a
-left join (
-    SELECT a.movies_id as movies_id, b.actors_name as actors_name, a.character_name as character_name
+SELECT a.title AS title,b.actors_name AS actors_name, b.character_name AS character_name
+FROM movies a
+INNER JOIN (
+    SELECT a.movies_id AS movies_id, b.actors_name AS actors_name, a.character_name AS character_name
     FROM casting a
-    left join actors b
-    on a.actors_id = b.id
+    INNER JOIN actors b
+    ON a.actors_id = b.id
             )b
-on a.id = b.movies_id
+ON a.id = b.movies_id;
 
